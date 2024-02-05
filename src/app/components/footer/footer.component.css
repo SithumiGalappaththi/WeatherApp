@@ -1,0 +1,10 @@
+footer {
+    background-color: #30333d;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f1f1f1ac;
+    margin-top: auto; /* Set top margin to auto to push it to the bottom */
+    margin-bottom: 0; /* Set bottom margin to create some space */
+  }

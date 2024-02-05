@@ -1,0 +1,76 @@
+.weather-card-container {
+    display: flex;
+    flex: 2;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .weather-card {
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  @media (min-width: 768px) {
+    .weather-card {
+      width: calc(33.3333% - 10px);
+    }
+  }
+  
+
+  .weather-card-content {
+    background-image: url('D:/Angular/WeatherAppNew/WeatherApp/src/assets/cloudBG.png');
+    background-color: transparent; /* Set background color to transparent */
+    background-size: cover; /* Ensures the background image covers the entire element */
+    background-position: center; /* Center the background image */
+    border-radius: 5px 5px 0 0;
+    padding: 15px;
+
+  }
+
+  .weather-card-footer {
+    background-color: #30333d;
+    padding: 15px;
+    border-radius: 0 0 5px 5px; /* Top corners flat, bottom corners rounded */
+  }
+
+  .upper-part {
+    display: flex;
+    text-align: center;
+  }
+
+  .lower-part {
+    display: flex;
+    text-align: center;
+  }
+  
+  .column {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    
+
+  }
+  
+  .row {
+    padding: 5px;
+    justify-content: center;
+  }
+  
+  .row.merged {
+    grid-row: span 2;
+  }
+
+  /* .item1{
+    align-items: center;
+  } */
+
+  .first-column {
+    flex: 1;
+  }
+  
+  .second-column {
+    flex: 1;
+  }
