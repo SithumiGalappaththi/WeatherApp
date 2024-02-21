@@ -41,6 +41,12 @@
     border: 1px solid #1f2128;
     width: 400px;
   }
+
+  .search-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
   
   .search-button{
     padding: 8px;
@@ -134,3 +140,26 @@
   .second-column {
     flex: 1;
   }
+
+  /* Responsive styles */
+
+@media screen and (max-width: 768px) {
+  .search-input {
+      width: 100%; /* Full width on small screens */
+  }
+
+  .search-button {
+      margin-left: 0; /* Remove margin on small screens */
+      margin-top: 10px; /* Add some margin between input and button */
+  }
+
+  .weather-card {
+      width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .weather-card {
+      width: calc(100% - 20px);
+  }
+}

@@ -74,3 +74,19 @@
   .second-column {
     flex: 1;
   }
+
+  /* Responsive styles */
+
+/* Media query for screens with a maximum width of 768px */
+@media screen and (max-width: 768px) {
+  .weather-card {
+      width: calc(50% - 20px);
+  }
+}
+
+/* Media query for screens with a maximum width of 576px */
+@media screen and (max-width: 576px) {
+  .weather-card {
+      width: calc(100% - 20px);
+  }
+}
