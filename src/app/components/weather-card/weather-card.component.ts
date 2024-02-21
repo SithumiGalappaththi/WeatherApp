@@ -9,7 +9,7 @@ import { WeatherService } from 'src/app/services/weather.service';
   styleUrls: ['./weather-card.component.css']
 })
 export class WeatherCardComponent {
-  cityIds: string[] = ['1248991', '1850147', '2644210', '2147714', '4930956'];
+  cityIds: string[] = ['1248991', '1850147', '2644210', '2147714', '4930956','2988507','1796236','3143244'];
   weatherData: any[] = [];
   cities!: any[];
 
@@ -41,24 +41,36 @@ export class WeatherCardComponent {
     });
   }
 
-  selectColor(cityId: string): string {
-    // Implement logic to select color based on city ID
-    switch (cityId) {
-      case '1248991':
-        return '#0088ff'; 
-      case '1850147':
-        return '#770477'; 
-      case '2644210':
-        return '#0a8a0a'; 
-      case '2147714':
-        return '#d0841b'; 
-      case '4930956':
-        return '#be4545'; 
-      default:
-        return '#a0a01c'; 
+  // selectColor(cityId: string): string {
+  //   // Implement logic to select color based on city ID
+  //   switch (cityId) {
+  //     case '1248991':
+  //       return '#0088ff'; 
+  //     case '1850147':
+  //       return '#770477'; 
+  //     case '2644210':
+  //       return '#0a8a0a'; 
+  //     case '2147714':
+  //       return '#d0841b'; 
+  //     case '4930956':
+  //       return '#be4545'; 
+  //     default:
+  //       return '#a0a01c'; 
+  //   }
+  // }
+  selectColor(minTemp: number): string {
+    if (minTemp < 0) {
+      return '#3366ff'; // Blue for temperatures below 0°C
+    } else if (minTemp >= 0 && minTemp < 10) {
+      return '#66ccff'; // Light Blue for temperatures between 0°C and 10°C
+    } else if (minTemp >= 10 && minTemp < 20) {
+      return '#99ff99'; // Green for temperatures between 10°C and 20°C
+    } else if (minTemp >= 20 && minTemp < 30) {
+      return '#ffcc66'; // Orange for temperatures between 20°C and 30°C
+    } else {
+      return '#ff6666'; // Red for temperatures above 30°C
     }
   }
-  
 
   convertKelvinToCelsius(kelvin: number): number {
     return Math.round((kelvin - 273.15) * 10) / 10;

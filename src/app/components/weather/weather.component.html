@@ -21,7 +21,8 @@
 <div class="weather-card-container">   
   <div *ngIf="weatherData" class="weather-card">
       <!-- upper part -->
-      <div class="weather-card-content upper-part" style="background-color: #a0a01c;" >
+      <!-- <div class="weather-card-content upper-part" style="background-color: #a0a01c;" > -->
+        <div class="weather-card-content upper-part" [style.background-color]="selectColor(convertKelvinToCelsius(weatherData.main.temp_min))">
       <!-- City name, country, date, and time -->
       <!-- First Column (City and Country) -->
           <div class="column first-column">
