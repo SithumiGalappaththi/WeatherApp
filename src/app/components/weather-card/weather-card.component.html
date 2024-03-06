@@ -1,55 +1,77 @@
-<div class="weather-card-container" >   
-    <div *ngFor="let data of weatherData ; let i = index" class="weather-card"  >
-        <!-- upper part -->
-        <!-- <div class="weather-card-content upper-part"  [style.background-color]="selectColor(cityIds[i])" > -->
-        <div class="weather-card-content upper-part" [style.background-color]="selectColor(convertKelvinToCelsius(data.main.temp_min))">
-        <!-- City name, country, date, and time -->
-        <!-- First Column (City and Country) -->
-            <div class="column first-column">
-                <div class="row" style="font-size: larger; font-weight: bolder;">{{ data.name }}, {{ data.sys.country }}</div>
-                <div class="row" style="font-size: small;">{{ convertUnixTimestampToDateTime(data.dt) }}</div>
-                <div class="row merged">
-                    <!-- <img class="weather-card-icon" [src]="" alt="Weather Icon" /> -->
-                    <p class="weather-card-condition">{{ data.weather[0].description }}</p>
-                </div>
-            </div>
-    
-        <!-- Temperature -->
-            <div class="column second-column">
-                <div class="row merged">
-                    {{ convertKelvinToCelsius(data.main.temp) }}°C
-                </div>
+<div class="weather-card-container">
+  <div *ngFor="let data of weatherData; let i = index" class="weather-card">
+    <!-- upper part -->
 
-                <div class="row">
-                    <p>Temp Min: {{ convertKelvinToCelsius(data.main.temp_min) }}°C
-                    <p>Temp Max: {{ convertKelvinToCelsius(data.main.temp_max) }}°C
-                </div>    
-            </div>     
+    <div
+      class="weather-card-content upper-part"
+      [style.background-color]="
+        selectColor(convertKelvinToCelsius(data.main.temp_min))
+      "
+    >
+      <!-- City name, country, date, and time -->
+      <!-- First Column (City and Country) -->
+      <div class="column first-column">
+        <div class="row" style="font-size: larger; font-weight: bolder">
+          {{ data.name }}, {{ data.sys.country }}
         </div>
-    
-        <!-- Weather details footer -->
-        <div class="weather-card-footer lower-part ">
-        <!-- Visibility, pressure, humidity -->
-            <div class="column" style="text-align: left;">
-                
-                <div class="row" style="font-size: smaller;"> <b>Pressure:</b> {{ data.main.pressure }} hPa </div>
-                <div class="row" style="font-size: smaller;"> <b>Humidity:</b> {{ data.main.humidity }}% </div>
-                <div class="row" style="font-size: smaller;" ><b>Visibility:</b> {{ convertMetersToKilometers(data.visibility) }} km</div>
-            </div>
-    
-        <!-- Wind speed and direction -->
-            <div class="column">
-                <div class="weather-card-details-info">
-                <img src="assets/wind.png" alt="">
-                <p style="font-size: smaller;">{{ data.wind.speed }}m/s {{ data.wind.deg }} Degree</p>
-                </div>
-            </div>
-    
-        <!-- Sunrise and sunset time -->
-            <div class="column">
-                <div class="row" style="font-size: smaller;">Sunrise: {{ convertUnixTimestampToAMPM(data.sys.sunrise) }} </div>
-                <div class="row" style="font-size: smaller;">Sunset: {{ convertUnixTimestampToAMPM(data.sys.sunset) }}</div>
-            </div>
+        <div class="row" style="font-size: small">
+          {{ convertUnixTimestampToDateTime(data.dt) }}
         </div>
+        <div class="row merged">
+          <!-- <img class="weather-card-icon" [src]="" alt="Weather Icon" /> -->
+          <p class="weather-card-condition">
+            {{ data.weather[0].description }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Temperature -->
+      <div class="column second-column">
+        <div class="row merged">
+          {{ convertKelvinToCelsius(data.main.temp) }}°C
+        </div>
+
+        <div class="row">
+          <p>Temp Min: {{ convertKelvinToCelsius(data.main.temp_min) }}°C</p>
+          <p>Temp Max: {{ convertKelvinToCelsius(data.main.temp_max) }}°C</p>
+        </div>
+      </div>
     </div>
-</div> 
+
+    <!-- Weather details footer -->
+    <div class="weather-card-footer lower-part">
+      <!-- Visibility, pressure, humidity -->
+      <div class="column" style="text-align: left">
+        <div class="row" style="font-size: smaller">
+          <b>Pressure:</b> {{ data.main.pressure }} hPa
+        </div>
+        <div class="row" style="font-size: smaller">
+          <b>Humidity:</b> {{ data.main.humidity }}%
+        </div>
+        <div class="row" style="font-size: smaller">
+          <b>Visibility:</b> {{ convertMetersToKilometers(data.visibility) }} km
+        </div>
+      </div>
+
+      <!-- Wind speed and direction -->
+      <div class="column">
+        <div class="weather-card-details-info">
+          <img src="assets/wind.png" alt="" />
+          <p style="font-size: smaller">
+            {{ data.wind.speed }}m/s {{ data.wind.deg }} Degree
+          </p>
+        </div>
+      </div>
+
+      <!-- Sunrise and sunset time -->
+      <div class="column">
+        <div class="row" style="font-size: smaller">
+          Sunrise: {{ convertUnixTimestampToAMPM(data.sys.sunrise) }}
+        </div>
+        <div class="row" style="font-size: smaller">
+          Sunset: {{ convertUnixTimestampToAMPM(data.sys.sunset) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

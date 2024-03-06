@@ -9,18 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class WeatherService {
 
-  // apiKey = '4f62ca97b5b50689cc68a31492ab0d14';
-    apiKey = environment.openWeatherMapApiKey;
-  // constructor(private http : HttpClient) { }
-
-
-
-  // getWeather(city: string) {
-  //   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.apiKey}`;
-  //   return this.http.get(apiUrl).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
+  apiKey = environment.openWeatherMapApiKey;
 
   constructor(private http: HttpClient, private cacheService: CacheService) { }
 

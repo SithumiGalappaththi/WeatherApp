@@ -10,39 +10,6 @@ import { temperatureColors } from 'src/app/constants/constants';
   styleUrls: ['./weather-card.component.css']
 })
 
-// export class WeatherCardComponent {
-//   cityIds: string[] = ['1248991', '1850147', '2644210', '2147714', '4930956','2988507','1796236','3143244'];
-//   weatherData: any[] = [];
-//   cities!: any[];
-
-//   constructor(private weatherService: WeatherService, private http: HttpClient) {
-//     this.getCities().subscribe(data => {
-//       this.cities = data.List;
-//       this.getCitiesWeather();
-//     });
-//   }
-
-//   getCities(): Observable<any> {
-//     return this.http.get<any>('assets/cities.json');
-//   }
-  
-//   getCitiesWeather() {
-//     this.cityIds.forEach((cityId, index) => {
-//       const city = this.cities.find(c => c.CityCode === cityId);
-//       if (city) {
-//         this.weatherService.getWeather(city.CityName)
-//           .subscribe(data => {
-//             this.weatherData[index] = data;
-  
-//             // Check if weatherData has details for all cities
-//             if (this.weatherData.filter(Boolean).length === this.cityIds.length) {
-//               // All details are fetched, you can perform any additional logic here
-//             }
-//           });
-//       }
-//     });
-//   }
-
 export class WeatherCardComponent implements OnInit {
   cityIds: string[] = [];
   weatherData: any[] = [];
@@ -79,19 +46,6 @@ export class WeatherCardComponent implements OnInit {
     });
   }
 
-  // selectColor(minTemp: number): string {
-  //   if (minTemp < 0) {
-  //     return '#3366ff'; // Blue for temperatures below 0°C
-  //   } else if (minTemp >= 0 && minTemp < 10) {
-  //     return '#66ccff'; // Light Blue for temperatures between 0°C and 10°C
-  //   } else if (minTemp >= 10 && minTemp < 20) {
-  //     return '#99ff99'; // Green for temperatures between 10°C and 20°C
-  //   } else if (minTemp >= 20 && minTemp < 30) {
-  //     return '#ffcc66'; // Orange for temperatures between 20°C and 30°C
-  //   } else {
-  //     return '#ff6666'; // Red for temperatures above 30°C
-  //   }
-  // }
   selectColor(minTemp: number): string {
     if (minTemp < 0) {
       return temperatureColors.belowZero;

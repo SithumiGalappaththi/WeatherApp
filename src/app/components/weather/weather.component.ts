@@ -61,20 +61,7 @@ export class WeatherComponent {
   
     return `${time}, ${dateString}`;
   }
-
-  // selectColor(minTemp: number): string {
-  //   if (minTemp < 0) {
-  //     return '#3366ff'; // Blue for temperatures below 0°C
-  //   } else if (minTemp >= 0 && minTemp < 10) {
-  //     return '#66ccff'; // Light Blue for temperatures between 0°C and 10°C
-  //   } else if (minTemp >= 10 && minTemp < 20) {
-  //     return '#99ff99'; // Green for temperatures between 10°C and 20°C
-  //   } else if (minTemp >= 20 && minTemp < 30) {
-  //     return '#ffcc66'; // Orange for temperatures between 20°C and 30°C
-  //   } else {
-  //     return '#ff6666'; // Red for temperatures above 30°C
-  //   }
-  // }
+  
   selectColor(minTemp: number): string {
     if (minTemp < 0) {
       return temperatureColors.belowZero;
