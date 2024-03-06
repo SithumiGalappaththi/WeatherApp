@@ -1,5 +1,5 @@
 <div class="weather-card-container" >   
-    <div *ngFor="let data of weatherData ; let i = index" class="weather-card" class="weather-card" >
+    <div *ngFor="let data of weatherData ; let i = index" class="weather-card"  >
         <!-- upper part -->
         <!-- <div class="weather-card-content upper-part"  [style.background-color]="selectColor(cityIds[i])" > -->
         <div class="weather-card-content upper-part" [style.background-color]="selectColor(convertKelvinToCelsius(data.main.temp_min))">

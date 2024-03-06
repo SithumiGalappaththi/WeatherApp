@@ -1,24 +1,51 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
+import { CacheService } from './cache.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
 
-  apiKey = '4f62ca97b5b50689cc68a31492ab0d14';
+  // apiKey = '4f62ca97b5b50689cc68a31492ab0d14';
+    apiKey = environment.openWeatherMapApiKey;
+  // constructor(private http : HttpClient) { }
 
-  constructor(private http : HttpClient) { }
 
 
+  // getWeather(city: string) {
+  //   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.apiKey}`;
+  //   return this.http.get(apiUrl).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
+
+  constructor(private http: HttpClient, private cacheService: CacheService) { }
 
   getWeather(city: string) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.apiKey}`;
-    return this.http.get(apiUrl).pipe(
-      catchError(this.handleError)
-    );
+    // Check if the weather data for the city is cached
+    const cachedData = this.cacheService.get(city);
+    if (cachedData) {
+      // If cached data exists, return it as an observable
+      return new Observable<any>((subscriber) => {
+        subscriber.next(cachedData);
+        subscriber.complete();
+      });
+    } else {
+      // If no cached data exists, fetch data from the API
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.apiKey}`;
+      return this.http.get(apiUrl).pipe(
+        catchError(this.handleError),
+        tap(data => {
+          // Cache the fetched data
+          this.cacheService.set(city, data);
+        })
+      );
+    }
   }
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

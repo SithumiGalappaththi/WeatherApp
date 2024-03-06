@@ -1,21 +1,59 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WeatherService } from 'src/app/services/weather.service';
+import { temperatureColors } from 'src/app/constants/constants';
 
 @Component({
   selector: 'app-weather-card',
   templateUrl: './weather-card.component.html',
   styleUrls: ['./weather-card.component.css']
 })
-export class WeatherCardComponent {
-  cityIds: string[] = ['1248991', '1850147', '2644210', '2147714', '4930956','2988507','1796236','3143244'];
-  weatherData: any[] = [];
-  cities!: any[];
 
-  constructor(private weatherService: WeatherService, private http: HttpClient) {
+// export class WeatherCardComponent {
+//   cityIds: string[] = ['1248991', '1850147', '2644210', '2147714', '4930956','2988507','1796236','3143244'];
+//   weatherData: any[] = [];
+//   cities!: any[];
+
+//   constructor(private weatherService: WeatherService, private http: HttpClient) {
+//     this.getCities().subscribe(data => {
+//       this.cities = data.List;
+//       this.getCitiesWeather();
+//     });
+//   }
+
+//   getCities(): Observable<any> {
+//     return this.http.get<any>('assets/cities.json');
+//   }
+  
+//   getCitiesWeather() {
+//     this.cityIds.forEach((cityId, index) => {
+//       const city = this.cities.find(c => c.CityCode === cityId);
+//       if (city) {
+//         this.weatherService.getWeather(city.CityName)
+//           .subscribe(data => {
+//             this.weatherData[index] = data;
+  
+//             // Check if weatherData has details for all cities
+//             if (this.weatherData.filter(Boolean).length === this.cityIds.length) {
+//               // All details are fetched, you can perform any additional logic here
+//             }
+//           });
+//       }
+//     });
+//   }
+
+export class WeatherCardComponent implements OnInit {
+  cityIds: string[] = [];
+  weatherData: any[] = [];
+  cities: any[] = [];
+
+  constructor(private weatherService: WeatherService, private http: HttpClient) { }
+
+  ngOnInit(): void {
     this.getCities().subscribe(data => {
       this.cities = data.List;
+      this.cityIds = this.cities.map(city => city.CityCode);
       this.getCitiesWeather();
     });
   }
@@ -41,34 +79,30 @@ export class WeatherCardComponent {
     });
   }
 
-  // selectColor(cityId: string): string {
-  //   // Implement logic to select color based on city ID
-  //   switch (cityId) {
-  //     case '1248991':
-  //       return '#0088ff'; 
-  //     case '1850147':
-  //       return '#770477'; 
-  //     case '2644210':
-  //       return '#0a8a0a'; 
-  //     case '2147714':
-  //       return '#d0841b'; 
-  //     case '4930956':
-  //       return '#be4545'; 
-  //     default:
-  //       return '#a0a01c'; 
+  // selectColor(minTemp: number): string {
+  //   if (minTemp < 0) {
+  //     return '#3366ff'; // Blue for temperatures below 0°C
+  //   } else if (minTemp >= 0 && minTemp < 10) {
+  //     return '#66ccff'; // Light Blue for temperatures between 0°C and 10°C
+  //   } else if (minTemp >= 10 && minTemp < 20) {
+  //     return '#99ff99'; // Green for temperatures between 10°C and 20°C
+  //   } else if (minTemp >= 20 && minTemp < 30) {
+  //     return '#ffcc66'; // Orange for temperatures between 20°C and 30°C
+  //   } else {
+  //     return '#ff6666'; // Red for temperatures above 30°C
   //   }
   // }
   selectColor(minTemp: number): string {
     if (minTemp < 0) {
-      return '#3366ff'; // Blue for temperatures below 0°C
+      return temperatureColors.belowZero;
     } else if (minTemp >= 0 && minTemp < 10) {
-      return '#66ccff'; // Light Blue for temperatures between 0°C and 10°C
+      return temperatureColors.zeroToTen;
     } else if (minTemp >= 10 && minTemp < 20) {
-      return '#99ff99'; // Green for temperatures between 10°C and 20°C
+      return temperatureColors.tenToTwenty;
     } else if (minTemp >= 20 && minTemp < 30) {
-      return '#ffcc66'; // Orange for temperatures between 20°C and 30°C
+      return temperatureColors.twentyToThirty;
     } else {
-      return '#ff6666'; // Red for temperatures above 30°C
+      return temperatureColors.aboveThirty;
     }
   }
 

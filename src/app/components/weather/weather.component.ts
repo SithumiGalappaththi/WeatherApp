@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WeatherService } from 'src/app/services/weather.service';
+import { temperatureColors } from 'src/app/constants/constants';
 
 @Component({
   selector: 'app-weather',
@@ -61,17 +62,30 @@ export class WeatherComponent {
     return `${time}, ${dateString}`;
   }
 
+  // selectColor(minTemp: number): string {
+  //   if (minTemp < 0) {
+  //     return '#3366ff'; // Blue for temperatures below 0°C
+  //   } else if (minTemp >= 0 && minTemp < 10) {
+  //     return '#66ccff'; // Light Blue for temperatures between 0°C and 10°C
+  //   } else if (minTemp >= 10 && minTemp < 20) {
+  //     return '#99ff99'; // Green for temperatures between 10°C and 20°C
+  //   } else if (minTemp >= 20 && minTemp < 30) {
+  //     return '#ffcc66'; // Orange for temperatures between 20°C and 30°C
+  //   } else {
+  //     return '#ff6666'; // Red for temperatures above 30°C
+  //   }
+  // }
   selectColor(minTemp: number): string {
     if (minTemp < 0) {
-      return '#3366ff'; // Blue for temperatures below 0°C
+      return temperatureColors.belowZero;
     } else if (minTemp >= 0 && minTemp < 10) {
-      return '#66ccff'; // Light Blue for temperatures between 0°C and 10°C
+      return temperatureColors.zeroToTen;
     } else if (minTemp >= 10 && minTemp < 20) {
-      return '#99ff99'; // Green for temperatures between 10°C and 20°C
+      return temperatureColors.tenToTwenty;
     } else if (minTemp >= 20 && minTemp < 30) {
-      return '#ffcc66'; // Orange for temperatures between 20°C and 30°C
+      return temperatureColors.twentyToThirty;
     } else {
-      return '#ff6666'; // Red for temperatures above 30°C
+      return temperatureColors.aboveThirty;
     }
   }
   

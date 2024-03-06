@@ -21,7 +21,7 @@
   
 
   .weather-card-content {
-    background-image: url('D:/Angular/WeatherAppNew/WeatherApp/src/assets/cloudBG.png');
+    /* background-image: url('D:/Angular/WeatherAppNew/WeatherApp/src/assets/cloudBG.png'); */
     background-color: transparent; /* Set background color to transparent */
     background-size: cover; /* Ensures the background image covers the entire element */
     background-position: center; /* Center the background image */
